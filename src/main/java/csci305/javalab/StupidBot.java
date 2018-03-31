@@ -5,6 +5,10 @@ public class StupidBot extends Player{
         this.name = name;
     }
     public Element play(){
-        return Main.moves.get("Rock");
+        Element play = moves.get("Rock");
+        if(TrackHistory.isTrackingHistory()){
+            TrackHistory.addHistory(play);
+        }
+        return play;
     }
 }

@@ -1,33 +1,34 @@
 package csci305.javalab;
 
-import java.util.Random;
-
-public class RandomBot extends Player {
-    public RandomBot(String name){
+public class IterativeBot extends Player{
+    private int counter = 0;
+    public IterativeBot(String name){
         this.name = name;
     }
     public Element play(){
         Element play = null;
-        Random r = new Random();
-        int random = r.nextInt(moves.size()) + 1;
-        if(random == 1){
+        if(counter == 5){
+            counter = 0;
+        }
+        if(counter == 0){
             play = moves.get("Rock");
         }
-        else if(random == 2){
+        else if(counter == 1){
             play = moves.get("Paper");
         }
-        else if(random == 3){
+        else if(counter == 2){
             play = moves.get("Scissors");
         }
-        else if(random == 4){
+        else if(counter == 3){
             play = moves.get("Lizard");
         }
-        else if(random == 5) {
+        else if(counter == 4){
             play = moves.get("Spock");
         }
         if(TrackHistory.isTrackingHistory()){
             TrackHistory.addHistory(play);
         }
+        counter++;
         return play;
     }
 }
